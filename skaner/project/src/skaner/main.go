@@ -8,11 +8,20 @@ import (
 	"skaner/tokeny"
 )
 
-func Scanner(file_name string){
+type ScannerError struct {
+	Row    int
+	Column int
+	Char   rune
+}
+
+func (e ScannerError) Error() string {
+	return fmt.Sprintf("Unexpected token in line %d, column %d: %s", e.Row, e.Column, string(e.Char))
+}
+
+func Scanner(file_name string) error{
 	file, err := os.Open(file_name)
 	if err != nil {
-		fmt.Println("Error: Unable to open file:", file_name)
-		os.Exit(1)
+		return fmt.Errorf("Error: Unable to open file: %s", file_name)
 	}
 	defer file.Close()
 
@@ -42,22 +51,26 @@ func Scanner(file_name string){
 		}
 
 		if tokeny.Numbers[ch]{
-			token := scanNumber(reader, ch)
+			token, newColumn := scanNumber(reader, ch, column)
+			column = newColumn
 			fmt.Println("Liczba : ", token)
 			continue
 		}
 
 		if tokeny.Letters[ch]{
-			token := scanIdentifier(reader, ch)
+			token, newColumn := scanIdentifier(reader, ch, column)
+			column = newColumn
 			fmt.Println("Identyfikator : ", token)
 			continue
 		}
 
-		fmt.Printf("Unexpected token in line %d, column %d: %s\n", row, column, string(ch))
+		return ScannerError{Row: row, Column: column, Char: ch}
 	}
+
+	return nil
 }
 
-func scanNumber(reader *bufio.Reader, first rune) string {
+func scanNumber(reader *bufio.Reader, first rune, column int) (string, int) {
 	number := string(first)
 	for {
 		ch, _, err := reader.ReadRune()
@@ -66,15 +79,16 @@ func scanNumber(reader *bufio.Reader, first rune) string {
 		}
 		if tokeny.Numbers[ch] {
 			number += string(ch)
+			column += 1
 		} else {
 			_ = reader.UnreadRune()
 			break
 		}
 	}
-	return number
+	return number, column
 }
 
-func scanIdentifier(reader *bufio.Reader, first rune) string{
+func scanIdentifier(reader *bufio.Reader, first rune, column int) (string, int) {
 	id := string(first)
 	for {
 		ch, _, err := reader.ReadRune()
@@ -83,14 +97,16 @@ func scanIdentifier(reader *bufio.Reader, first rune) string{
 		}
 		if tokeny.Letters[ch] {
 			id += string(ch)
+			column += 1
 		} else if tokeny.Numbers[ch] {
 			id += string(ch)
+			column += 1
 		} else {
 			_ = reader.UnreadRune()
 			break
 		}
 	}
-	return id
+	return id, column
 }
 
 func main(){
@@ -105,7 +121,11 @@ func main(){
 
 	fmt.Printf("Scanner started in file: %s \n\n", *file_name)
 
-	Scanner(*file_name)
+	err := Scanner(*file_name)
+	if err != nil {
+		fmt.Println("Scanner Error:", err)
+		os.Exit(1)
+	}
 
 	fmt.Println("\nScanner finished its job.")
 	os.Exit(0)
