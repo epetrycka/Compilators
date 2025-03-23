@@ -15,8 +15,11 @@
 
 | Token    | Znaczenie          | Kolor     |
 |:-------- |:------------------:|:----------|
-| `jesli`  | Warunek            | Różowy    |
-| `inaczej`| Inaczej            | Niebieski |
-| `dopóty` | Pętla              | Zielony   |
-| `zwróć`  | Zwracanie wartości | Czerwony  |
-| `funkcja`| Deklaracja funkcji | Czarny    |
+| `if`     | Warunek            | Różowy    |
+| `else`   | Inaczej            | Niebieski |
+| `for`    | Pętla              | Zielony   |
+| `return` | Zwracanie wartości | Czerwony  |
+| `func`   | Deklaracja funkcji | Czarny    |
+| `var`    | Deklaracja zmiennej| Pomarańczowy|
+| `string` | Typ tekstowy       | Żółty     |
+| `int`    | Typ całkowity      | Fioletowy |
