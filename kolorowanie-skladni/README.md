@@ -13,13 +13,22 @@
 
 ### Spis tokenów i kolorów
 
-| Token    | Znaczenie          | Kolor     |
-|:-------- |:------------------:|:----------|
-| `if`     | Warunek            | Różowy    |
-| `else`   | Inaczej            | Niebieski |
-| `for`    | Pętla              | Zielony   |
-| `return` | Zwracanie wartości | Czerwony  |
-| `func`   | Deklaracja funkcji | Czarny    |
-| `var`    | Deklaracja zmiennej| Pomarańczowy|
-| `string` | Typ tekstowy       | Żółty     |
-| `int`    | Typ całkowity      | Fioletowy |
+| Token       | Znaczenie             | Kolor        |
+|-------------|-----------------------|--------------|
+| `if`        | Warunek               | Różowy       |
+| `else`      | Inaczej               | Niebieski    |
+| `for`       | Pętla                 | Granatowy      |
+| `return`    | Zwracanie wartości    | Czerwony     |
+| `func`      | Deklaracja funkcji    | Żółty       |
+| `var`       | Deklaracja zmiennej   | Pomarańczowy |
+| `string`    | Typ tekstowy          | Fioletowy    |
+| `int`       | Typ całkowity         | Fioletowy    |
+| `print`     | Drukowanie wyniku     | Seledynowy    |
+| `+ - * / %` | Operatory matematyczne | Brązowy      |
+| `&& \|\| !`   | Operatory logiczne    | Turkusowy    |
+| `== != < > <= >=` | Operatory porównania | Malinowy  |
+| `123, 3.14` | Liczby                | Szary        |
+| `//`        | Komentarz jednoliniowy | Zielony      |
+| `/* ... */` | Komentarz wieloliniowy | Zielony      |
+| `(` `)` `{` `}` `[ ]` | Nawiasy i znaki specjalne | Biały |
+| `, ;`       | Separatory            | Biały       |

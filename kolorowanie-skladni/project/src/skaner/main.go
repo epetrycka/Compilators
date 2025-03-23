@@ -16,6 +16,11 @@ func scanner(expression []rune, position int) (string, string, int, bool) {
 		return string(char), value, position, true
 	}
 
+	if value, exists := tokeny.Brackets[char]; exists {
+		position += 1
+		return string(char), value, position, true
+	}
+
 	if tokeny.Numbers[char] {
 		var token []rune
 		token = append(token, char)
@@ -41,7 +46,7 @@ func scanner(expression []rune, position int) (string, string, int, bool) {
 	return string(char), "invalid", position, false
 }
 
-func process_expression(expression []rune, position int, row int, column int) int {
+func process_expression(expression []rune, position int, row int, column int, writer *bufio.Writer) int {
 	for position < len(expression){
 		token, value, newPosition, err := scanner(expression, position)
 		position = newPosition
@@ -49,6 +54,14 @@ func process_expression(expression []rune, position int, row int, column int) in
 			fmt.Printf("Error: Unexpected token: %s, in row: %d, column: %d \n", token, row, (position + column + 1 - len(token)))
 			return position
 		}
+		if value, exist := tokeny.KeyWords[token]; exist{
+			writer.WriteString("<span class=\"" + value + "\">" + token + "</span>")
+			writer.Flush()
+		} else {
+			writer.WriteString(token)
+			writer.Flush()
+		}
+
 		fmt.Printf("Token: %s, value: %s, row: %d, column: %d \n", token, value, row, (position + column - len(token)))
 	}
 	return position
@@ -71,6 +84,18 @@ func main(){
 	}
 	defer file.Close()
 
+	output_file := "output.html"
+
+	output, err := os.Create(output_file)
+	if err != nil {
+		fmt.Println("Błąd przy tworzeniu pliku:", err)
+		return
+	}
+	defer output.Close()
+	writer := bufio.NewWriter(output)
+	writer.WriteString(tokeny.Inital)
+	writer.Flush()
+
 	reader := bufio.NewReader(file)
 	fmt.Printf("Scanner started in file: %s \n", *file_name)
 	var expression []rune
@@ -88,8 +113,10 @@ func main(){
 		// fmt.Printf("nowy znak %q \n", char)
 		if tokeny.WhiteSpaces[char] {
 			if char == '\r' { continue }
-			newPosition := process_expression(expression, position, row, columns)
-			
+			newPosition := process_expression(expression, position, row, columns, writer)
+			writer.WriteString(string(char))
+			writer.Flush()
+
 			if newPosition != len(expression){
 				os.Exit(1)
 			}
@@ -107,9 +134,12 @@ func main(){
 		}
 	}
 
-	newPosition := process_expression(expression, position, row, columns)
+	newPosition := process_expression(expression, position, row, columns, writer)
 
 	if newPosition != len(expression){
 		os.Exit(1)
 	}
+
+	writer.WriteString(tokeny.End)
+	writer.Flush()
 }

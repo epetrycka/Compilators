@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: white;
+            font-family: Consolas, monospace;
+        }
+        .if { color: #ff79c6; }   /* Różowy */
+        .else { color: #00a2ff; }   /* Niebieski */
+        .for { color: #0008fb; }   /* Granatowy */
+        .return { color: #ff0000; }   /* Czerwony */
+        .func { color: #fbff00; }   /* Żółty */
+        .var { color: #ff7700; }   /* Pomarańczowy */
+        .type { color: #a870f5; }      /* Fioletowy */
+        .number { color: #bfbfbf; }    /* Szary */
+        .operator { color: #615243; }  /* Brązowy */
+        .comment { color: #50fa7b; }   /* Zielony */
+        .brackets { color: #ffffff; }  /* Biały */
+        .seperators { color: #faffe8; }  /* Biały */
+        .logic { color: #00fffb; }  /* Turkusowy */
+        .compare { color: #ff0090; } /* Malinowy */
+        .print { color: #b3ff00; } /* Seledynowy */
+    </style>
+</head>
+<body>
+<pre>
+<span class="func">func</span> main<span class="brackets">(</span><span class="brackets">)</span> <span class="brackets">{</span>
+    <span class="var">var</span> x <span class="type">int</span> <span class="operator">=</span> 10
+    <span class="var">var</span> y <span class="type">int</span> <span class="operator">=</span> 20
+
+    <span class="if">if</span> x <span class="compare"><</span> y <span class="brackets">{</span>
+        <span class="operator">/</span><span class="operator">/</span> To jest komentarz jednoliniowy
+        x <span class="operator">=</span> x <span class="operator">+</span> 5
+    <span class="brackets">}</span> <span class="else">else</span> <span class="brackets">{</span>
+        <span class="operator">/</span><span class="operator">*</span> 
+           To jest komentarz
+           wieloliniowy
+        <span class="operator">*</span><span class="operator">/</span>
+        y <span class="operator">=</span> y <span class="operator">-</span> 5
+    <span class="brackets">}</span>
+
+    <span class="for">for</span> i <span class="seperators">:</span><span class="operator">=</span> 0<span class="seperators">;</span> i <span class="compare"><</span> 10<span class="seperators">;</span> i<span class="operator">+</span><span class="operator">+</span> <span class="brackets">{</span>
+        <span class="print">print</span><span class="brackets">(</span>i<span class="brackets">)</span>
+    <span class="brackets">}</span>
+
+    <span class="return">return</span> x <span class="operator">+</span> y
+<span class="brackets">}</span>
+</pre>
+</body>
+</html>

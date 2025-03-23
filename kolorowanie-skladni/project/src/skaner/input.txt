@@ -1,2 +1,21 @@
- 2+3*(76+8/3)+ 3*(9-3)
-hej ka 4+2/349
+func main() {
+    var x int = 10
+    var y int = 20
+
+    if x < y {
+        // To jest komentarz jednoliniowy
+        x = x + 5
+    } else {
+        /* 
+           To jest komentarz
+           wieloliniowy
+        */
+        y = y - 5
+    }
+
+    for i := 0; i < 10; i++ {
+        print(i)
+    }
+
+    return x + y
+}
