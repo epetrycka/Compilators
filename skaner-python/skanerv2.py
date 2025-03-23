@@ -1,36 +1,38 @@
 import argparse
 from tokens import whiteSpaces, operators, numbers, letters
 
-def scanner(expression: str, position: int) -> tuple[str, str, int]:
+def scanner(expression: str, position: int, row: int, column: int) -> tuple[str, str, int]:
     token = ''
-    while (position < len(expression)):
-        char = expression[position]
-        position += 1
+    char = expression[position]
+    position += 1
 
-        if char in operators:
-            return char, operators[char], position
-        
-        if char in numbers:
-            token += char
-            while expression[position] in numbers:
-                token += expression[position]
-                position += 1
-            return token, "Liczba_CBZ", position
-        
-        if char in letters:
-            token += char
-            while position < len(expression) and (expression[position] in numbers or expression[position] in letters):
-                token += expression[position]
-                position += 1
-            return token, "Identifier", position
+    if char in operators:
+        return char, operators[char], position
 
-    return token, 0, position
+    if char in numbers:
+        token += char
+        while position < len(expression) and expression[position] in numbers:
+            token += expression[position]
+            position += 1
+        return token, "Liczba_CBZ", position
 
-def process_expression(expression: str, position: int, row: int, columns: int) -> int:
+    if char in letters:
+        token += char
+        while position < len(expression) and (expression[position] in numbers or expression[position] in letters):
+            token += expression[position]
+            position += 1
+        return token, "Identifier", position
+
+    raise ValueError(f"Nieoczekiwany znak '{char}' w wierszu {row}, kolumna {column + 1}")
+
+def process_expression(expression: str, position: int, row: int, columns: int):
     while position < len(expression):
-        token, value, position = scanner(expression, position)
-        print(f'Token: {token}, value: {value}, row: {row}, column: {position + columns}')
-    return position
+        try:
+            token, value, position = scanner(expression, position, row, columns + position)
+            print(f'Token: {token}, value: {value}, row: {row}, column: {columns + position - len(token)}')
+        except ValueError as e:
+            print(f"Błąd: {e}")
+            return
 
 def main():
     parser = argparse.ArgumentParser(description="Podaj plik wejściowy do skanera")
@@ -47,7 +49,7 @@ def main():
 
             while (char := file.read(1)):
                 if char in whiteSpaces:
-                    position = process_expression(expression, position, row, columns)
+                    process_expression(expression, position, row, columns)
                     columns += len(expression) + 1
                     expression = ""
                     position = 0
@@ -55,13 +57,13 @@ def main():
                         row += 1
                         columns = 0
                 else:
-                    expression = expression + char
+                    expression += char
 
-            if char == "" and expression != "":
-                _ = process_expression(expression, position, row, columns)
+            if expression:
+                process_expression(expression, position, row, columns)
 
     except Exception as e:
-        raise ValueError(e)
+        print(f"Wystąpił nieoczekiwany błąd: {e}")
 
 if __name__ == "__main__":
     main()
