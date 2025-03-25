@@ -11,7 +11,80 @@
 * Program powinien wczytywać z pliku kod w wybranym formacie i zwrócić do innego pliku pokolorowany kod. 
 * Jako formatu wyjściowego można wykorzystać np. HTML. W pliku wyjściowym powinien być zachowany układ tekstu z pliku wejściowego.
 
-### Spis tokenów i kolorów
+# Dokumentacja Tokenów
+
+## Operatory
+
+| Symbol | Nazwa       | Kategoria   |
+|--------|------------|------------|
+| `+`    | Plus       | Operator   |
+| `-`    | Minus      | Operator   |
+| `*`    | Multiply   | Operator   |
+| `/`    | Divide     | Operator   |
+| `=`    | Assign     | Operator   |
+| `%`    | Modulo     | Operator   |
+| `<`    | Less       | Compare    |
+| `>`    | More       | Compare    |
+| `,`    | Comma      | Operator   |
+| `;`    | Semicolon  | Operator   |
+| `:`    | Colon      | Operator   |
+| `!`    | Negation   | Operator   |
+
+## Nawiasy
+
+| Symbol | Nazwa      | Kategoria  |
+|--------|-----------|-----------|
+| `(`    | Param_L  | Brackets  |
+| `)`    | Param_P  | Brackets  |
+| `{`    | Curly_L  | Brackets  |
+| `}`    | Curly_P  | Brackets  |
+| `'`    | Single_quote  | Text  |
+| `"`    | Double_quote  | Text  |
+
+
+## Operatory logiczne i specjalne
+
+| Symbol  | Nazwa               | Kategoria  |
+|---------|--------------------|------------|
+| `&&`    | Conjuction         | Logic      |
+| `\|\|`  | Alternative        | Logic      |
+| `:=`    | Colon Assign       | Operator   |
+| `==`    | Comparison         | Compare    |
+| `!=`    | Neg Comparison     | Compare    |
+| `<=`    | Less Equal         | Compare    |
+| `>=`    | More Equal         | Compare    |
+| `++`    | Increase           | Operator   |
+| `--`    | Decrease           | Operator   |
+| `//`    | Comment Line       | Comment    |
+| `/*`    | Comment Block Start | Comment    |
+| `*/`    | Comment Block End   | Comment    |
+
+## Słowa kluczowe
+
+| Symbol   | Nazwa     | Kategoria |
+|----------|----------|-----------|
+| `if`     | If       | Keyword   |
+| `else`   | Else     | Keyword   |
+| `for`    | For      | Keyword   |
+| `return` | Return   | Keyword   |
+| `func`   | Func     | Keyword   |
+| `var`    | Var      | Keyword   |
+
+## Typy danych
+
+| Symbol   | Nazwa  | Kategoria |
+|----------|-------|-----------|
+| `string` | Type  | Type      |
+| `int`    | Type  | Type      |
+
+## Pozostałe
+
+| Symbol   | Nazwa         | Kategoria |
+|----------|--------------|-----------|
+| `print`  | Print        | Keyword   |
+| `number` | Number       | Number    |
+
+## Kolory tokenów
 
 | Token       | Znaczenie             | Kolor        |
 |-------------|-----------------------|--------------|
@@ -31,5 +104,26 @@
 | `123, 3.14` | Liczby                | Seledynowy   |
 | `//`        | Komentarz jednoliniowy | Zielony      |
 | `/* ... */` | Komentarz wieloliniowy | Zielony      |
+| `" ... "` | Dane tekstowe | Zielony      |
 | `(` `)` `{` `}` `[ ]` | Nawiasy      | Czerowny |
 | `, ;`       | Separatory            | Biały       |
+
+## Struktura pliku i wykonanie
+
+```
+/project/src/skaner
+  ├── main.go
+  ├── functions/ #Zawiera funkcję process_expression() i scanner()
+  │   ├── scanner.go
+  ├── tokeny/ #Zawiera spis symboli, id_tokenów i ich kategorie
+  │   ├── tokens.go
+  ├── input.txt
+  ├── output.html
+  ├── go.mod
+```
+
+Aby uruchomić program wykonaj:
+
+```
+go run /project/src/skaner/main.go
+```

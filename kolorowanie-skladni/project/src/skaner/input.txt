@@ -1,21 +1,25 @@
+// To jest komentarz liniowy
+
 func main() {
     var x int = 10
-    var y int = 20
+    var y string := "Hello, World!"
+    /* 
+        To jest 
+        komentarz blokowy 
+    */ 
 
-    if x < y {
-        // To jest komentarz jednoliniowy
-        x = x + 5
+    if x >= 10 && y != "" {
+        print("x jest wieksze lub rowne 10 i y nie jest pusty")
     } else {
-        /* 
-           To jest komentarz
-           wieloliniowy
-        */
-        y = y - 5
+        print("Warunek nie zostal spelniony")
     }
 
-    for i := 0; i < 10; i++ {
-        print(i)
+    for i := 0; i < 5; i++ {
+        print("Iteracja:", i)
     }
 
-    return x + y
+    x++
+    y = "Nowa wartosc"
+
+    return
 }

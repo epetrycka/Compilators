@@ -24,33 +24,39 @@
         .brackets { color:rgb(255, 0, 0); }  /* Czerowny */
         .seperators { color: #faffe8; }  /* Biały */
         .logic { color:rgb(0, 238, 255); }  /* Turkusowy */
-        .compare { color:rgb(255, 225, 0); } /* Seledynowy */
+        .comparison { color:rgb(255, 225, 0); } /* Seledynowy */
         .print { color:rgb(0, 174, 255); } /* Niebieski */
+		.text { color:rgb(6, 194, 34); } /* Zielony */
     </style>
 </head>
 <body>
 <pre>
+<span class="comment">//</span> <span class="comment">To</span> <span class="comment">jest</span> <span class="comment">komentarz</span> <span class="comment">liniowy</span>
+
 <span class="func">func</span> main<span class="brackets">(</span><span class="brackets">)</span> <span class="brackets">{</span>
     <span class="var">var</span> x <span class="type">int</span> <span class="operator">=</span> <span class="number">10</span>
-    <span class="var">var</span> y <span class="type">int</span> <span class="operator">=</span> <span class="number">20</span>
+    <span class="var">var</span> y <span class="type">string</span> <span class="operator">:=</span> <span class="text">"</span><span class="text">Hello</span><span class="text">,</span> <span class="text">World</span><span class="text">!</span><span class="text">"</span>
+    <span class="comment">/*</span> 
+        <span class="comment">To</span> <span class="comment">jest</span> 
+        <span class="comment">komentarz</span> <span class="comment">blokowy</span> 
+    <span class="comment">*/</span> 
 
-    <span class="if">if</span> x <span class="compare"><</span> y <span class="brackets">{</span>
-        <span class="comment">//</span> <span class="comment">To</span> <span class="comment">jest</span> <span class="comment">komentarz</span> <span class="comment">jednoliniowy</span>
-        x <span class="operator">=</span> x <span class="operator">+</span> <span class="number">5</span>
+    <span class="if">if</span> x <span class="comparison">>=</span> <span class="number">10</span> <span class="logic">&&</span> y <span class="comparison">!=</span> <span class="text">"</span><span class="text">"</span> <span class="brackets">{</span>
+        <span class="print">print</span><span class="brackets">(</span><span class="text">"</span><span class="text">x</span> <span class="text">jest</span> <span class="text">wieksze</span> <span class="text">lub</span> <span class="text">rowne</span> <span class="text">10</span> <span class="text">i</span> <span class="text">y</span> <span class="text">nie</span> <span class="text">jest</span> <span class="text">pusty</span><span class="text">"</span><span class="brackets">)</span>
     <span class="brackets">}</span> <span class="else">else</span> <span class="brackets">{</span>
-        <span class="comment">/*</span> 
-           <span class="comment">To</span> <span class="comment">jest</span> <span class="comment">komentarz</span>
-           <span class="comment">wieloliniowy</span>
-        <span class="comment">*/</span>
-        y <span class="operator">=</span> y <span class="operator">-</span> <span class="number">5</span>
+        <span class="print">print</span><span class="brackets">(</span><span class="text">"</span><span class="text">Warunek</span> <span class="text">nie</span> <span class="text">zostal</span> <span class="text">spelniony</span><span class="text">"</span><span class="brackets">)</span>
     <span class="brackets">}</span>
 
-    <span class="for">for</span> i <span class="operator">:</span><span class="operator">=</span> <span class="number">0</span><span class="operator">;</span> i <span class="compare"><</span> <span class="number">10</span><span class="operator">;</span> i<span class="operator">+</span><span class="operator">+</span> <span class="brackets">{</span>
-        <span class="print">print</span><span class="brackets">(</span>i<span class="brackets">)</span>
+    <span class="for">for</span> i <span class="operator">:=</span> <span class="number">0</span><span class="operator">;</span> i <span class="comparison"><</span> <span class="number">5</span><span class="operator">;</span> i<span class="operator">++</span> <span class="brackets">{</span>
+        <span class="print">print</span><span class="brackets">(</span><span class="text">"</span><span class="text">Iteracja</span><span class="text">:</span><span class="text">"</span><span class="operator">,</span> i<span class="brackets">)</span>
     <span class="brackets">}</span>
 
-    <span class="return">return</span> x <span class="operator">+</span> y
+    x<span class="operator">++</span>
+    y <span class="operator">=</span> <span class="text">"</span><span class="text">Nowa</span> <span class="text">wartosc</span><span class="text">"</span>
+
+    <span class="return">return</span>
 <span class="brackets">}</span>
+
 </pre>
 </body>
 </html>
