@@ -15,20 +15,21 @@
 
 | Token       | Znaczenie             | Kolor        |
 |-------------|-----------------------|--------------|
-| `if`        | Warunek               | Różowy       |
+| `if`        | Warunek               | Malinowy     |
 | `else`      | Inaczej               | Niebieski    |
-| `for`       | Pętla                 | Granatowy      |
-| `return`    | Zwracanie wartości    | Czerwony     |
-| `func`      | Deklaracja funkcji    | Żółty       |
+| `for`       | Pętla                 | Fioletowy    |
+| `return`    | Zwracanie wartości    | Granatowy    |
+| `func`      | Deklaracja funkcji    | Różowy       |
 | `var`       | Deklaracja zmiennej   | Pomarańczowy |
-| `string`    | Typ tekstowy          | Fioletowy    |
-| `int`       | Typ całkowity         | Fioletowy    |
-| `print`     | Drukowanie wyniku     | Seledynowy    |
+| `string`    | Typ tekstowy          | Żółty        |
+| `int`       | Typ całkowity         | Żółty        |
+| `print`     | Drukowanie wyniku     | Niebieski    |
+| `comment`   | Komentarze            | Zielony      |
 | `+ - * / %` | Operatory matematyczne | Brązowy      |
-| `&& \|\| !`   | Operatory logiczne    | Turkusowy    |
-| `== != < > <= >=` | Operatory porównania | Malinowy  |
-| `123, 3.14` | Liczby                | Szary        |
+| `&& \|\| !`   | Operatory logiczne    | Brązowy    |
+| `== != < > <= >=` | Operatory porównania | Żółty  |
+| `123, 3.14` | Liczby                | Seledynowy   |
 | `//`        | Komentarz jednoliniowy | Zielony      |
 | `/* ... */` | Komentarz wieloliniowy | Zielony      |
-| `(` `)` `{` `}` `[ ]` | Nawiasy i znaki specjalne | Biały |
+| `(` `)` `{` `}` `[ ]` | Nawiasy      | Czerowny |
 | `, ;`       | Separatory            | Biały       |

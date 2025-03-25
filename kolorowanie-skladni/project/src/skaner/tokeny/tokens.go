@@ -11,22 +11,23 @@ var Inital = `<!DOCTYPE html>
             background-color: #1e1e1e;
             color: white;
             font-family: Consolas, monospace;
+            font-size: large;
         }
-        .if { color: #ff79c6; }   /* Różowy */
+        .if { color:rgb(255, 0, 144); }   /* Malinowy */
         .else { color: #00a2ff; }   /* Niebieski */
-        .for { color: #0008fb; }   /* Granatowy */
-        .return { color: #ff0000; }   /* Czerwony */
-        .func { color: #fbff00; }   /* Żółty */
+        .for { color:rgb(159, 0, 251); }   /* Fioletowy */
+        .return { color:rgb(0, 47, 255); }   /* Granatowy */
+        .func { color:rgb(255, 0, 217); }   /* Różowy */
         .var { color: #ff7700; }   /* Pomarańczowy */
-        .type { color: #a870f5; }      /* Fioletowy */
-        .number { color: #bfbfbf; }    /* Szary */
-        .operator { color: #615243; }  /* Brązowy */
-        .comment { color: #50fa7b; }   /* Zielony */
-        .brackets { color: #ffffff; }  /* Biały */
+        .type { color:rgb(255, 242, 0); }      /* Żółty */
+        .number { color:rgb(115, 255, 0); }    /* Seledynowy */
+        .operator { color:rgb(145, 108, 71); }  /* Brązowy */
+        .comment { color:rgb(0, 188, 25); }   /* Zielony */
+        .brackets { color:rgb(255, 0, 0); }  /* Czerowny */
         .seperators { color: #faffe8; }  /* Biały */
-        .logic { color: #00fffb; }  /* Turkusowy */
-        .compare { color: #ff0090; } /* Malinowy */
-        .print { color: #b3ff00; } /* Seledynowy */
+        .logic { color:rgb(0, 238, 255); }  /* Turkusowy */
+        .compare { color:rgb(255, 225, 0); } /* Seledynowy */
+        .print { color:rgb(0, 174, 255); } /* Niebieski */
     </style>
 </head>
 <body>
@@ -47,18 +48,46 @@ var WhiteSpaces = map[rune]bool{
 	'\f': true,
 }
 
+// var Operators = map[rune]string{
+// 	'+' : "Dodawanie",
+// 	'-': "Odejmowanie",
+// 	'*': "Mnozenie",
+// 	'/': "Dzielenie",
+// 	'=': "Przypisanie",
+// 	'%': "Modulo",
+// 	'<': "Mniejsze",
+// 	'>': "Wieksze",
+// 	',': "Przecinek",
+// 	';': "Średnik",
+// 	':': "Dwukropek",
+// 	'!': "Zaprzeczenie",
+// 	'&': "Koniunkcja",
+// 	'|': "Alternatywa",
+// }
+
 var Operators = map[rune]string{
-	'+' : "Dodawanie",
-	'-': "Odejmowanie",
-	'*': "Mnozenie",
-	'/': "Dzielenie",
-	'=': "Przypisanie",
-	'%': "Modulo",
-	'<': "Mniejsze",
-	'>': "Wieksze",
-	',': "Przecinek",
-	';': "Średnik",
-	':': "Dwukropek",
+	'+': "plus",
+	'-': "minus",
+	'*': "multiply",
+	'/': "divide",
+	'=': "operator",
+	'%': "operator",
+	'<': "compare",
+	'>': "compare",
+	',': "operator",
+	';': "operator",
+	':': "operator",
+	'!': "operator",
+	'&': "logic",
+	'|': "logic",
+}
+
+var LogicExp = map[string]string {
+	"&&" : "logic",
+	"||" : "logic",
+	"!" : "logic",
+	"==" : "compare",
+	"!=" : "compare",
 }
 
 var Brackets = map[rune]string{
@@ -105,26 +134,16 @@ var KeyWords = map[string]string{
 	"string" : "type",
 	"int" : "type",
 	"print" : "print",
-	"+" : "operator",
-	"-" : "operator",
-	"*" : "operator",
-	"/" : "operator",
-	"%" : "operator",
-	"=" : "operator",
-	"&&" : "logic",
-	"||" : "logic",
-	"!" : "logic",
-	"==" : "compare",
-	"!=" : "compare",
-	">" : "compare",
-	"<" : "compare",
-	">=" : "compare",
-	"<=" : "compare",
-	"(" : "brackets",
-	")" : "brackets",
-	"{" : "brackets",
-	"}" : "brackets",
-	"," : "seperators",
-	";" : "seperators",
-	":" : "seperators",
+	"number" : "number",
+	"operator" : "operator",
+	"plus" : "operator",
+	"minus" : "operator",
+	"multiply" : "operator",
+	"divide" : "operator",
+	"comment" : "comment",
+	"compare" : "compare",
+	"Nawias_L" : "brackets",
+	"Nawias_P" : "brackets",
+	"Klamra_L" : "brackets",
+	"Klamra_P" : "brackets",
 }
