@@ -76,6 +76,7 @@
 |----------|-------|-----------|
 | `string` | Type  | Type      |
 | `int`    | Type  | Type      |
+| `text`   | Text  | Text      |
 
 ## Pozostałe
 
@@ -97,6 +98,7 @@
 | `string`    | Typ tekstowy          | Żółty        |
 | `int`       | Typ całkowity         | Żółty        |
 | `print`     | Drukowanie wyniku     | Niebieski    |
+| `text `     | Dane tekstowe         | Niebieski    |
 | `comment`   | Komentarze            | Zielony      |
 | `+ - * / %` | Operatory matematyczne | Brązowy      |
 | `&& \|\| !`   | Operatory logiczne    | Brązowy    |
@@ -125,5 +127,5 @@
 Aby uruchomić program wykonaj:
 
 ```
-go run /project/src/skaner/main.go
+go run /project/src/skaner/main.go -file=input.txt
 ```

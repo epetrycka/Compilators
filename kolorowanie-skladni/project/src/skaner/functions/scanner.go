@@ -13,12 +13,13 @@ func Scanner(expression []rune, position int) (string, string, int, bool) {
 	//Jeśli znak jest jednym z operatorów
 	if value, exists := tokeny.Operators[char]; exists {
 		position += 1
-		//Sprawdzenie czy wyrażenie nie jest znakiem początku lub końca komentarza
+		//Sprawdzenie czy wyrażenie ma drugi znak
 		if position < len(expression) {
 			var token []rune
 			token = append(token, char)
 			token = append(token, expression[position])
 			position += 1
+			//Sprawdzenie czy wyrażenie nie jest dwuznakowym operatorem
 			if token_id, exist := tokeny.LogicExp[string(token)]; exist {
 				return string(token), token_id, position, true
 			} else {
@@ -29,13 +30,13 @@ func Scanner(expression []rune, position int) (string, string, int, bool) {
 		return string(char), value, position, true
 	}
 
-	//Sprawdzenie czy twyrażenie nie jest nawiasem
+	//Sprawdzenie czy twyrażenie jest nawiasem
 	if value, exists := tokeny.Brackets[char]; exists {
 		position += 1
 		return string(char), value, position, true
 	}
 
-	//Sprawdzenie czy wyrażenie nie jest wartością liczbową
+	//Sprawdzenie czy wyrażenie jest wartością liczbową
 	if tokeny.Numbers[char] {
 		var token []rune
 		token = append(token, char)
@@ -48,7 +49,7 @@ func Scanner(expression []rune, position int) (string, string, int, bool) {
 		return string(token), "number", position, true 
 	}
 
-	//Sprawdzenie czy wyrażenie nie jest identyfikatorem zaczynającym się literą
+	//Sprawdzenie czy wyrażenie jest identyfikatorem zaczynającym się literą
 	if tokeny.Letters[char] {
 		var token []rune
 		token = append(token, char)
@@ -80,7 +81,7 @@ func Process_expression(expression []rune, position int, row int, column int, wr
 		fmt.Printf("Token: %s, id_tokenu: %s, row: %d, column: %d \n", token, id_tokenu, row, (position + column - len(token)))
 		
 		//Zapis do pliku elementów html
-		//Zaktualizowanie zmiennej występowania komentarza wieloliniowego
+		//Zaktualizowanie zmiennej występowania komentarza
 		if id_tokenu == "comment_block_start"{
 			comment_block = true
 		}
@@ -94,11 +95,13 @@ func Process_expression(expression []rune, position int, row int, column int, wr
 		if comment_line || comment_block {
 			id_tokenu = "comment_line"
 		}
+		//Zaktualizowanie zmiennej występowania typu tekstowego
 		if id_tokenu == "double_quotation" && !text{
 			text = true
 		} else if id_tokenu == "double_quotation" && text {
 			text = false
 		}
+		//Określenie wyrażenia jako tekstowy
 		if text {
 			id_tokenu = "text"
 		}

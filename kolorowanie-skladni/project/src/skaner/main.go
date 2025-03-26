@@ -66,7 +66,7 @@ func main(){
 		//Operacje wykonywane po zakończeniu wczytywania wyrażenia do pierwszej spacji
 		if tokeny.WhiteSpaces[char] {
 			if char == '\r' { continue } //Znak końca linii - pomijamy
-			//Wywołanie funkcji procesowania i zapis zmiennych wartości o wystąpieniu znaku komentarza
+			//Wywołanie funkcji procesowania i zapis zmiennych wartości o wystąpieniu znaku komentarza lub tekstu
 			newPosition, newComment, newCommentBlock, newText := functions.Process_expression(expression, position, row, columns, writer, comment_line, comment_block, text)
 			comment_line = newComment
 			comment_block = newCommentBlock
